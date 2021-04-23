@@ -17,9 +17,25 @@
         tools:layout="@layout/fragment_register" />
     <action
         android:id="@+id/action_global_registerFragment"
-        app:destination="@id/registerFragment" />
+        app:destination="@id/registerFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/scale_enter"
+        app:popExitAnim="@anim/scale_exit" />
     <action
         android:id="@+id/action_global_mainFragment"
         app:destination="@id/mainFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.ui.fragment.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/scale_enter"
+        app:popExitAnim="@anim/scale_exit" />
 
 </navigation>

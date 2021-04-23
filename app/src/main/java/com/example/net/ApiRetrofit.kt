@@ -1,5 +1,6 @@
 package com.example.net
 
+import com.example.request.LoginRequest
 import com.example.request.RegisterUserRequest
 import com.example.response.BaseResponse
 import com.example.util.JsonUtil
@@ -28,11 +29,11 @@ object ApiRetrofit {
     private val okHttpClient: OkHttpClient by lazy {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder()
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(loggingInterceptor)
-            .build()
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor(loggingInterceptor)
+                .build()
     }
 
     private val loggingInterceptor: HttpLoggingInterceptor by lazy {
@@ -42,15 +43,22 @@ object ApiRetrofit {
 
     private val apiService: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(getBaseUrl())
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
+                .baseUrl(getBaseUrl())
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(ApiService::class.java)
     }
 
     suspend fun registerUser(request: RegisterUserRequest): BaseResponse {
         val requestBody = JsonUtil.toJson(request).toRequestBody()
         return apiService.registerUser(requestBody)
+    }
+
+    suspend fun login(request: LoginRequest): BaseResponse {
+        val paraMap = HashMap<String, String>()
+        paraMap["userName"] = request.userName
+        paraMap["password"] = request.password
+        return apiService.login(paraMap)
     }
 }

@@ -13,4 +13,8 @@ interface ApiService {
     @Headers("Content-Type:application/json;charset=utf-8")
     @POST("/user/register_user")
     suspend fun registerUser(@Body requestBody: RequestBody): BaseResponse
+
+    @FormUrlEncoded
+    @POST("/user/login")
+    suspend fun login(@FieldMap paraMap: HashMap<String, String>): BaseResponse
 }

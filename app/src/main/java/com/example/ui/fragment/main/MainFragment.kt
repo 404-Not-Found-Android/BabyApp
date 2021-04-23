@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.R
 import com.example.databinding.FragmentMainBinding
+import com.example.util.AndroidBarUtils
 import com.qmuiteam.qmui.arch.QMUIFragment
 
 /**
@@ -26,8 +28,10 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        NavHostFragment.findNavController(this).navigate(R.id.action_global_registerFragment)
-        dataBinding.textView.setOnClickListener {
+        dataBinding.cvLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_global_loginFragment)
+        }
+        dataBinding.cvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_global_registerFragment)
         }
     }
