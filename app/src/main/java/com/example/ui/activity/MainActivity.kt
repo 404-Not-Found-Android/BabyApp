@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidBarUtils.setTranslucent(this)
+//        AndroidBarUtils.setTranslucent(this)
         setContentView(R.layout.activity_main)
     }
 

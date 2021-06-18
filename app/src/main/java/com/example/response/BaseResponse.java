@@ -56,4 +56,14 @@ public class BaseResponse {
     public void setOk(Object ok) {
         this.ok = ok;
     }
+
+    @Override
+    public String toString() {
+        return "BaseResponse{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                ", ok=" + ok +
+                '}';
+    }
 }

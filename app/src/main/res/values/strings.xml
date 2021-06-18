@@ -2,6 +2,8 @@
     <string name="app_name">Navigation</string>
     <string name="tv_register">账号注册</string>
     <string name="tv_login">登  录</string>
+    <string name="tv_photo">Photo</string>
     <string name="btn_register">注  册</string>
     <string name="btn_login">登  录</string>
+    <string name="error_gif">长宽不小于 %1$dpx，且大小不超过 %2$sM。</string>
 </resources>

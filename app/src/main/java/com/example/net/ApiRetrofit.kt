@@ -4,6 +4,7 @@ import com.example.request.LoginRequest
 import com.example.request.RegisterUserRequest
 import com.example.response.BaseResponse
 import com.example.util.JsonUtil
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,7 +21,8 @@ import java.util.concurrent.TimeUnit
 object ApiRetrofit {
 
     private const val PORT: Int = 8080
-    private const val BASE_URL = "http://10.0.2.2"
+//    private const val BASE_URL = "http://10.0.2.2"
+    private const val BASE_URL = "http://192.168.2.147"
 
     private fun getBaseUrl(): String {
         return StringBuilder().append(BASE_URL).append(":").append(PORT).toString()
@@ -60,5 +62,9 @@ object ApiRetrofit {
         paraMap["userName"] = request.userName
         paraMap["password"] = request.password
         return apiService.login(paraMap)
+    }
+
+    suspend fun uploadFile(body: MultipartBody):BaseResponse{
+        return apiService.uploadFile(body)
     }
 }

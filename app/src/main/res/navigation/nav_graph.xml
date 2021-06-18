@@ -37,5 +37,20 @@
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/scale_enter"
         app:popExitAnim="@anim/scale_exit" />
+    <fragment
+        android:id="@+id/pageFragment"
+        android:name="com.example.ui.fragment.page.PageFragment"
+        android:label="PageFragment"
+        tools:layout="@layout/fragment_page"
+        />
+    <action
+        android:id="@+id/action_global_pageFragment"
+        app:destination="@id/pageFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/scale_enter"
+        app:popExitAnim="@anim/scale_exit"
+        app:popUpTo="@id/action_global_mainFragment"
+        app:popUpToInclusive="true"/>
 
 </navigation>

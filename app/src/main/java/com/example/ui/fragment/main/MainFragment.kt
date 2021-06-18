@@ -19,7 +19,7 @@ import com.qmuiteam.qmui.arch.QMUIFragment
  * CreateTime  : 4/20/21
  */
 class MainFragment : Fragment() {
-    lateinit var dataBinding: FragmentMainBinding
+    private lateinit var dataBinding: FragmentMainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         dataBinding = FragmentMainBinding.inflate(layoutInflater)
@@ -33,6 +33,9 @@ class MainFragment : Fragment() {
         }
         dataBinding.cvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_global_registerFragment)
+        }
+        dataBinding.cvPhoto.setOnClickListener {
+            findNavController().navigate(R.id.action_global_pageFragment)
         }
     }
 }
