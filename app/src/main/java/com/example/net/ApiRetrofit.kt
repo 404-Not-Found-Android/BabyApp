@@ -2,7 +2,10 @@ package com.example.net
 
 import com.example.request.LoginRequest
 import com.example.request.RegisterUserRequest
+import com.example.request.UploadRequest
 import com.example.response.BaseResponse
+import com.example.response.PageResponse
+import com.example.response.UploadResponse
 import com.example.util.JsonUtil
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -21,7 +24,8 @@ import java.util.concurrent.TimeUnit
 object ApiRetrofit {
 
     private const val PORT: Int = 8080
-//    private const val BASE_URL = "http://10.0.2.2"
+
+//        private const val BASE_URL = "http://10.0.2.2"
     private const val BASE_URL = "http://192.168.2.147"
 
     private fun getBaseUrl(): String {
@@ -30,12 +34,7 @@ object ApiRetrofit {
 
     private val okHttpClient: OkHttpClient by lazy {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .addInterceptor(loggingInterceptor)
-                .build()
+        OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).connectTimeout(30, TimeUnit.SECONDS).addInterceptor(loggingInterceptor).build()
     }
 
     private val loggingInterceptor: HttpLoggingInterceptor by lazy {
@@ -44,12 +43,7 @@ object ApiRetrofit {
 
 
     private val apiService: ApiService by lazy {
-        Retrofit.Builder()
-                .baseUrl(getBaseUrl())
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(ApiService::class.java)
+        Retrofit.Builder().baseUrl(getBaseUrl()).client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).build().create(ApiService::class.java)
     }
 
     suspend fun registerUser(request: RegisterUserRequest): BaseResponse {
@@ -64,7 +58,16 @@ object ApiRetrofit {
         return apiService.login(paraMap)
     }
 
-    suspend fun uploadFile(body: MultipartBody):BaseResponse{
+    suspend fun loadPage(): PageResponse {
+        return apiService.loadPage()
+    }
+
+    suspend fun upload(request: UploadRequest): BaseResponse {
+        val requestBody = JsonUtil.toJson(request).toRequestBody()
+        return apiService.upload(requestBody)
+    }
+
+    suspend fun uploadFile(body: MultipartBody): BaseResponse {
         return apiService.uploadFile(body)
     }
 }

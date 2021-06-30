@@ -22,8 +22,6 @@ public class BaseResponse {
     private String msg;
     @SerializedName("data")
     private Object data;
-    @SerializedName("ok")
-    private Object ok;
 
     public int getStatus() {
         return status;
@@ -47,23 +45,5 @@ public class BaseResponse {
 
     public void setData(Object data) {
         this.data = data;
-    }
-
-    public Object getOk() {
-        return ok;
-    }
-
-    public void setOk(Object ok) {
-        this.ok = ok;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseResponse{" +
-                "status=" + status +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                ", ok=" + ok +
-                '}';
     }
 }
